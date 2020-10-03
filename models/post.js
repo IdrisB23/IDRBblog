@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const dateSchema = require("./date.js");
+const postDateSchema = require("./postDate.js");
 
 module.exports = mongoose.Schema({
     linkToPost: {
@@ -15,12 +15,8 @@ module.exports = mongoose.Schema({
         type: String,
         required: true
     },
-    authorName: {
-        type: String,
-        required: true
-    },
     postDate: {
-        type: dateSchema,
+        type: postDateSchema,
         required: true
     },
     prevImgLink: {

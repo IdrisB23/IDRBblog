@@ -1,18 +1,17 @@
 <div class="pagination-wrapper">
-    <% if(page != 1 || leftmostPage != 1) { %>
-    <button value=1 id="pageBtnFirst"
-            class="page btn bnt-sm btn-light">First</button>
-    <% } %>
-    <% for(var i = leftmostPage; i <= rightmostPage; i++) { %>
-    <% if(i == page) { %>
-    <button value=<%= i %> class="page btn bnt-sm btn-light active"><%= i %></button>
-    <% } else { %>
-    <button value=<%= i %> id="pageBtn<%= i %>"
-            class="page btn bnt-sm btn-light"><%= i %></button>
-    <% } %>
-    <% } %>
-    <% if(page != Math.ceil(size/limit) || rightmostPage != Math.ceil(size/limit)) { %>
-    <button value=<%= Math.ceil(size/limit)  %> id="pageBtnLast"
-            class="page btn bnt-sm btn-light">Last</button>
-    <% } %>
+        <% if(page != 0) { %>
+        <% if(page != 1 || leftmostPage != 1) { %>
+        <button value=1 id="pageBtnFirst" class="page btn bnt-sm btn-light">First</button>
+        <% } %>
+        <% for(var i = leftmostPage; i <= rightmostPage; i++) { %>
+        <% if(i == page) { %>
+        <button value=<%= i %> class="page btn bnt-sm btn-light active"><%= i %></button>
+        <% } else { %>
+        <button value=<%= i %> id="pageBtn<%= i %>" class="page btn bnt-sm btn-light"><%= i %></button>
+        <% } %>
+        <% } %>
+        <% if(page != Math.ceil(size/limit) || rightmostPage != Math.ceil(size/limit)) { %>
+        <button value=<%= Math.ceil(size/limit)  %> id="pageBtnLast" class="page btn bnt-sm btn-light">Last</button>
+        <% } %>
+        <% } %>
 </div>

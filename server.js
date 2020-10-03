@@ -1,11 +1,14 @@
-const port = 3000;
+const port = process.env.PORT || 5000
 // imports
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 //const slugify = require("sulgify");
 const postSchema = require("./models/post.js");
+const postDateSchema = require("./models/postDate.js");
+const post = require("./models/post.js");
 const Post = mongoose.model("Post", postSchema);
+const PostDate = mongoose.model("PostDate", postDateSchema);
 
 const app = express();
 
@@ -13,8 +16,56 @@ const app = express();
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
-mongoose.connect("mongodb://localhost/blog", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://admin-idris:Planokur202@cluster0.is6fx.mongodb.net/IDRBblog", { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
+
+// Add default posts to DB if it were empty
+
+const mathInducPost = new Post({
+    linkToPost: "/mathInduc",
+    postTitle: "Mathematical Induction",
+    postSubTitle: "Once, then Twice, Again and Over Again...",
+    postDate: new PostDate({
+        month: "June",
+        day: 3,
+        year: 2020
+    }),
+    prevImgLink: "assets/img/mathInduc/thumbnail.jpg"
+});
+
+const arraysLinkedListsPost = new Post({
+    linkToPost: "/arraysLinkedLists",
+    postTitle: "Organization for Dummies",
+    postSubTitle: "Introduction to Data Structures: Arrays and Linked lists",
+    postDate: new PostDate({
+        month: "June",
+        day: 22,
+        year: 2020
+    }),
+    prevImgLink: "assets/img/arraysLinkedLists/thumbnail.jpg"
+});
+
+const stacksQueuesPost = new Post({
+    linkToPost: "/stacksQueues",
+    postTitle: "Stacks and Queues",
+    postSubTitle: "Binary Data cutting into Line",
+    postDate: new PostDate({
+        month: "August",
+        day: 1,
+        year: 2020
+    }),
+    prevImgLink: "assets/img/stacksQueues/thumbnail.jpg"
+});
+
+let defaultPosts = [mathInducPost, arraysLinkedListsPost, stacksQueuesPost];
+
+Post.find((err, posts) => {
+    if(!err && posts.length == 0) {
+        defaultPosts.forEach((post) => {
+            post.save();
+        });
+    }
+});
 
 // Static files
 app.use("/", express.static(__dirname + "/public"));
@@ -59,10 +110,11 @@ function paginatedResults(model) {
             page = pages;
         if (page < 1)
             page = 1;
+        if (size == 0)
+            page = 0;
         const skipped = size - page * limit;
         let startIndex = skipped;
         let endIndex = limit;
-
 
         let leftmostPage = page - Math.floor(pagDisplayButtonCount / 2);
         let rightmostPage = page + Math.floor(pagDisplayButtonCount / 2);

@@ -1,0 +1,23 @@
+<div class="container"><a class="linkToPosts" href="posts<%= linkToPost %>">
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="post-preview">
+                <h2 class="post-title"><%= postTitle %></h2>
+                <h3 class="post-subtitle"><%= postSubTitle %></h3>
+                <p class="post-meta">Posted by <span><%= authorName %></span> on <span><%= postDate.month %></span>
+                    <% if(postDate.day == 1) { %>
+                        <span>1<sup>st</sup>
+                    <% } else if(postDate.day == 2) { %>
+                        <span>2<sup>nd</sup> 
+                    <% } else if(postDate.day == 3) { %>
+                        <span>3<sup>rd</sup>
+                    <% } else { %>
+                        <span><%= postDate.day %><sup>th</sup>
+                    <% } %>
+                    , <%= postDate.year %></p>
+            </div>
+        </div>
+        <div class="col"><img src="<%= prevImgLink %>" style="width: 100%;height: 100%;" />
+        </div>
+    </div>
+</a></div>

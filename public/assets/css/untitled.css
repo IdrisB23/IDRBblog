@@ -1,0 +1,52 @@
+.linkToPosts:hover {
+  text-decoration: none;
+  color: rgba(0,0,0,.5);
+}
+
+#mainNav .navbar-nav > li.nav-item > .bigger-link {
+  font-size: 0.8em;
+}
+
+#shareBtn {
+  margin: 0 auto;
+}
+
+.thicker-text {
+  font-size: 1.3em;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1031;
+  background: rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+.share {
+  position: absolute;
+}
+
+.overlay-show {
+  display: initial;
+}
+
+.non-clickable {
+  pointer-events: none;
+}
+
+#FbShareBtn {
+  cursor: pointer;
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center ;
+}
+

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Mathematical Induction</title>
+    <meta name="" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicons/android-chrome-512x512.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169340812-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169340812-1');
+</script>
+<!-- End Google Analytics site tag --><meta property="og:url" content="https://www.idrb.company/mathInduc.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Mathemtical Induction" />
+  <meta property="og:description"   content="Once, then twice, again, and over again..." />
+  <meta property="og:image"         content="https://www.idrb.company/assets/img/mathInduc/dominoes.jpg" />
+</head>
+
+<body><!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+<!-- End Load Facebook SDK for JavaScript -->
+<div class="overlay"></div>
+<nav class="navbar navbar-light navbar-expand-sm fixed-top" id="mainNav">
+    <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link bigger-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link bigger-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link bigger-link" href="/posts/last">Latest Post</a></li>
+            </ul>
+        </div>
+    </div>
+</nav><header class="masthead" style="background-image:url('assets/img/mathInduc/dominoes.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="post-heading">
+                    <h1>Mathematical Induction,<br />Dominoes, Sheep, And All That Jazz<br /></h1>
+                    <h2 class="subheading" style="text-shadow: .8px .5px #000000;">once, then twice, again, and over again...</h2><span class="meta"style="text-shadow: .8px .5px #000000;">by Idris Babay on June 3<sup>rd</sup>, 2020, 7min reads</span>
+                    <div style="display:flex; margin: 20px 0;"><button id="shareBtn" class="btn btn-success">Share</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="modal fade" role="dialog" tabindex="-1" id="shareModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Share your thoughts!</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><iframe style="margin: 10px auto;" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fidrb.company%2FmathInduc&layout=button&size=large&appId=2734600069983960&width=77&height=28" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></div>
+        </div>
+    </div>
+    <article>
+        <div class="container">
+            <div class="row"><div class="col-md-10 col-lg-8 mx-auto thicker-text">
+    <p>Mathematical induction is at the heart of most proofs. It&#39;s a simple but a very powerful technique. We use it to generalize an observation made locally.<br /></p>
+    <p>Let&#39;s start with an example. Let&#39;s take our beloved domino pieces out and put them in a perfectly aligned row. Notice that now we can apply some kind of order to the pieces. We simply label the first piece in line with d_1, second with d_2,
+        and in general i-th with d_i.</p>
+    <p>We push the first piece on our row onto the second. We notice that these two are falling down already. We note F(d_i) to convey that d_i has fallen. We know that if a piece falls onto another, it will bring it down with it. If you&#39;re not convinced,
+        try it for yourself. So the satement: F(d_i) implies F(d_i+1) holds.</p>
+    <p>We conclude that all pieces must fall after some time. Formally, for all natural numbers n &lt; m+1, d_1, d_2, ..., d_n-1, and d_n are down, whereas m is the total number of domino pieces we had from the start.</p>
+    <p>Some may ask, why is this even a thing? You may be able to count all the domino pieces that have fallen and check, whether it adds up the whole count. But imagine we were dealing with an infinite number of pieces. Of course this wouldn&#39;t be possible
+        in our case, but in mathematics there are no such limitations and infinite models are fairly common.</p>
+    <h2 class="section-heading">In General</h2>
+    <p>We generalize the proof technique. A proof by induction over a set of elements { m_1, m_2, ..., m_n} consists of:</p>
+    <p>i) Basis: the statement is true for some elements m_s, s &gt; 0 (local observation).</p>
+    <p>ii) Step: assume statement holds for some index i &gt; s, and prove it still holds for element i+1.</p>
+    <blockquote class="blockquote">
+        <p class="mb-0"></p>
+    </blockquote>
+    <p>Can you spot the pattern? d_1 implies d_2 implies ... d_n. This saves us a lot of writing effort and helps us establish a useful property over a sequence of elements regardless, whether it&#39;s short, long, or even infinite.</p>
+    <h2 class="section-heading">Non-Example</h2>
+    <p>Non-examples can sometimes help us grasp concepts even better than examples do.</p><img class="img-fluid" src="assets/img/mathInduc/sheep.jpg" style="width: 722px;" /><a href="#"></a><span class="caption text-muted">Your treat for staying along and reading until the end. Thank you</span>
+    <p>Somebody just went out and said: &quot;All sheep in a group have the same color&quot;. Since I&#39;ve just learned about mathematical indution, I wanted show off my new skills and attempted to prove his claim. I wrote:</p>
+    <p>Basis: If we take a group having one sheep. The statement is trivially true.</p>
+    <p>Step: Suppose it&#39;s true for group of n-1 sheep, we want to prove that it holds for a group of n sheep. Let&#39;s take a group of n sheep and call it M. We&#39;ll take the first sheep s_1 out of M, now we have M&#39;={s_2, ... s_n} having n-1 sheep.
+    So by our assumption all sheep in M&#39; have the same color. We make M&#39;&#39;={s_1, ..., s_n-1} out of M by taking out last sheep. Likewise M&#39;&#39; has sheep of same color. We conclude it holds for M.</p>
+    <p>Could you spot the mistake? Notice that the property doesn&#39;t hold for n=2. We have a set M consisting of one sky-blue and one pink sheep. M&#39; would only contain the sky-blue and M&#39;&#39; the pink sheep. The problem is: the statement holds(trivially) for M&#39; and M&#39;&#39; but we don&#39;t have a &quot;comparison sheep&quot; to generalize to M.</p>
+</div></div>
+        </div>
+    </article>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a href="https://www.instagram.com/idris_babay/" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-instagram fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/idris-babay-496a071a3/" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin-square fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.facebook.com/IdrisBabayV" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.xing.com/profile/Idris_Babay/cv" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-xing fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/IdrisB23" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                    <p class="text-muted copyright">Copyright&nbsp;©&nbsp;IDRB 2020</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/clean-blog.js"></script>
+</body>
+
+</html>

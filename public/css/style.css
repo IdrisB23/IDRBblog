@@ -1,0 +1,10 @@
+h1 {
+    color: cornflowerblue;
+}
+
+.wrapper {
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}

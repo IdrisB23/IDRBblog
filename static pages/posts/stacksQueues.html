@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Stacks and Queues</title>
+    <meta name="" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicons/android-chrome-512x512.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169340812-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169340812-1');
+</script>
+<!-- End Google Analytics site tag --><meta property="og:url" content="https://www.idrb.company/stacksQueues.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Stacks and Queues" />
+  <meta property="og:description"   content="Binary data cutting into line!" />
+  <meta property="og:image"         content="https://www.idrb.company/assets/img/stacksQueues/shareThumb.png" />
+</head>
+
+<body><!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+<!-- End Load Facebook SDK for JavaScript -->
+<div class="overlay"></div>
+<nav class="navbar navbar-light navbar-expand-sm fixed-top" id="mainNav">
+    <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link bigger-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link bigger-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link bigger-link" href="/posts/last">Latest Post</a></li>
+            </ul>
+        </div>
+    </div>
+</nav><header class="masthead" style="background-image:url('assets/img/stacksQueues/macarons.jpg');" >
+    <div class="container"style="text-shadow: 1px .8px black">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="post-heading">
+                    <h1>Stacks and Queues</h1>
+                    <h2 class="subheading">Binary data cutting into line!</h2><span class="meta">by Idris Babay on August 1<sup>st</sup>, 2020, 8min reads</span>
+                    <div style="display:flex; margin: 20px 0;"><button id="shareBtn" class="btn btn-success">Share</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="modal fade" role="dialog" tabindex="-1" id="shareModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Share now</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fidrb.company%2FstacksQueues&layout=button&size=large&appId=2734600069983960&width=77&height=28" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></div>
+        </div>
+    </div>
+    <article>
+        <div class="container">
+            <div class="row"><div class="col-md-10 col-lg-8 mx-auto thicker-text">
+    <p>
+        I always look up the motivation behind every new concept I learn to know the struggles clever people have encountered in the past and how they came up with these ideas, and this would be my approach in all posts.
+    </p>
+    <hr/>
+    <p>
+        A stack follows the Last-In-First-Out (LIFO) principle. It can be thought of as a pile of pancakes; You'd have to (technically) eat those at the top first. It maintains a pointer <i>S.top</i> to its topmost element and the 2 main operations a stack supports are Stack-PUSH and Stack-POP (Yup, those are the official terms). <b>PUSH(S, e)</b> inserts the new element e at the top of the stack. <b>POP(S)</b> does exactly the inverse and removes the element at the top. Both operations update <i>S.top</i> accordingly.
+    </p>
+    <img class="img-fluid" src="assets/img/stacksQueues/stackOperations.png"/>
+    <p>
+        Almost any modern piece of software supports action-<i>undoing</i> and -<i>redoing</i>. This can be achieved by maintaining 2 stacks: UNDO and REDO; each time an action is undone, we pop it from UNDO and push it onto REDO. With redoing, we conversely pop from REDO and push onto UNDO. We won't discuss here what data the action elements contains.
+    </p>
+    <hr/>
+    <p>
+       A queue follows the First-In-First-Out (FIFO) principle. Analogous to lines in supermarkets or anywhere basically, the person who has waited longest gets served first. Queues keep 2 pointers <i>Q.head</i> and <i>Q.tail</i> and, like stacks, they support 2 main modifying operations; <b>ENQUEUE(Q, e)</b> inserts e at the head of the queue and <b>DEQUEUE(Q)</b> removes the element at the tail.
+    </p>
+    <img class="img-fluid" src="assets/img/stacksQueues/queueOperations.png"/>   
+    <p>
+        Queues can be used to implement a variety of systems, where many operations are at hand and are required to be executed in the future in sequential order. It's used for example in Input/Output requests: when typing on the keyboard, the OS is adding pressed keys to a queue and handing them over to the software, in whose form you're typing.
+    </p>
+    <hr/>
+    <p>
+        Both of these data structures can be implemented using simpler ones that we have already studied, notably <a href="arraysLinkedLists.html">linked lists and arrays<a>. With the former, we'd only have to properly call INSERT(L, e) and DELETE(L, e) to insert at top/head and delete from top/tail. Using arrays is, however, more subtle. For both structures we'll use an array A of size n.
+    </p>
+    <p>
+        A stack requires a pointer A.top that gives us the slot in the array that contains the top element. Each time we push onto A, we update A.top = A.top + 1 and add element at that slot. Popping means overriding the value with null (means empty or unset) and decreasing A.top by 1.  If A.top = 0, the stack is empty. If we attempt to pop an empty a <i>stack-underflow</i> error occurs. Conversly, the stack is full when A.top = n and a push operation, then, results in a <i>stack-overflow</i> error, which is a very common error in programming environments. Try a similar approach to implement queues using arrays!
+    </p>
+        <img class="img-fluid" src="assets/img/stacksQueues/arrayImplementingStack.png"/>
+        <hr/>
+    <p>
+        We will revisit stacks and queues and use them in future posts when we'll inspect graphs and graph traversal algorithms. Until then, stay healthy!
+    </p>
+</div></div>
+        </div>
+    </article>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a href="https://www.instagram.com/idris_babay/" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-instagram fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/idris-babay-496a071a3/" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin-square fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.facebook.com/IdrisBabayV" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.xing.com/profile/Idris_Babay/cv" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-xing fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/IdrisB23" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                    <p class="text-muted copyright">Copyright&nbsp;©&nbsp;IDRB 2020</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/clean-blog.js"></script>
+</body>
+
+</html>

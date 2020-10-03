@@ -1,0 +1,7 @@
+<div id="pagination-block">
+    <% results.forEach((post) => { %>
+    <%- include("postPreview.ejs", post) %>
+    <hr>
+    <% }) %>
+    <%- include ("pagination.ejs", {size, limit, page, rightmostPage, leftmostPage}) %>
+</div>

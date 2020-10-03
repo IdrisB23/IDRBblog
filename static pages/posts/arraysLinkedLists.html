@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Arrays and Linked Lists</title>
+    <meta name="" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicons/android-chrome-512x512.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169340812-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169340812-1');
+</script>
+<!-- End Google Analytics site tag --><meta property="og:url"           content="https://www.idrb.company/arraysLinkedLists.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Arrays and Linked Lists" />
+  <meta property="og:description"   content="Introduction to data structures" />
+  <meta property="og:image"         content="https://www.idrb.company/assets/img/arraysLinkedLists/orga.jpg" />
+</head>
+
+<body><!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+<!-- End Load Facebook SDK for JavaScript -->
+<div class="overlay"></div>
+<nav class="navbar navbar-light navbar-expand-sm fixed-top" id="mainNav">
+    <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link bigger-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link bigger-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link bigger-link" href="/posts/last">Latest Post</a></li>
+            </ul>
+        </div>
+    </div>
+</nav><header class="masthead" style="background-image:url('assets/img/arraysLinkedLists/orga.jpg');">
+    <div class="container"style="text-shadow: 1px .8px black">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="post-heading">
+                    <h1>Organization for Dummies</h1>
+                    <h2 class="subheading">Introduction to Data Structures: Arrays and Linked Lists</h2><span class="meta">by Idris Babay on June 22<sup>th</sup>, 2020, 11min reads</span>
+                    <div style="display:flex; margin: 20px 0;"><button id="shareBtn" class="btn btn-success">Share</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="modal fade" role="dialog" tabindex="-1" id="shareModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Share now</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fidrb.company%2FarraysLinkedLists&layout=button&size=large&appId=2734600069983960&width=77&height=28" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></div>
+        </div>
+    </div>
+    <article>
+        <div class="container">
+            <div class="row"><div class="col-md-10 col-lg-8 mx-auto thicker-text">
+    <p>Let's face it: organization makes life much easier. You don't want to lose those valuable holiday pictures, that's why you store them in a folder on your computer. As we're creating that directory, the file manager on the <abbr title="Operating System">OS</abbr> assigns a path to it to know where to fetch it upon request. This File Manager figure is much like your mom: nothing gets lost in the house. Only difference is, instead of shouting back the whereabouts of your blue T-shirt, it goes something like: C:\house\myBedRoom \closet\topShelf\right \notLost.toldYouSo</p>
+    <hr/>
+    <p>Data Structures are containers for data and, just like that file manager, they have built-in features for storing and retrieving data. This is the somewhat abstract black-box definition. But, don't worry! With some examples, we'll develop the right intuition for these constructs. I cannot stress enough the importance of optimization. There are 2 main factors to compare performance of structures: time required for an query (retrieve/update data) and (storage) space needed. This might not strike you as crucial, but if Google were storing some redundant information along each data object, it may take extra minutes to run a simple search with a data base of that scale.</p>
+    <p>In this post we will learn about elementary structures such as Arrays and Linked Lists. In the later articles we'll use Linked Lists to implement Stacks and Queues and have a look at more advanced data structures such as Trees, Heaps, and Hash Tables.</p>
+    <hr/>
+    <h2 class="section-heading">Arrays</h2>
+    <p>An array is simply a table with one row and a fixed number n of columns.</p>
+    <p>Your aunt's shoe rack is an array of sorts... an array of pairs of shoes.
+        </p>
+        <img class="img-fluid" src="assets/img/arraysLinkedLists/shoesArray.png" style="width: 722px;" />
+    <p>
+    If we denote the rack with A, we can access the first pair by A[0] and generally the i-th by A[i-1]. Actually, this is what's called virtual memory, that programming languages introduced to make code more readable. Under the hood, the array entries are stored in registers in the main memory(RAM), whose addresses are in hexadecimal form. So the effective address of the first pair of shoes may be something like 0x00FF58C0: 0x00FF58C0(base address) + 0(offset), the second 0x00FF58C4... 
+    </p>
+    <p>
+        This is great! We have our array and our virtual memory in reach, but what happens if she buys her new favorite pair and wants to add it at the first position of her collection? We'd then have to shift all existing pairs one position to the left to make enough room for the flashy shoes. In other words: <ol>
+    <li> A[i+1] &lt- A[i] for all existing pairs</li>
+    <li> A[0] &lt- newPair</li>
+    </ol>
+    That's a lot of work! If we're adding new shoes on a regular basis, we'd be better off using a linked list.
+    </p>
+<hr/>
+    <h2 class="section-heading">Linked Lists</h2>
+    <p>The order of elements in arrays is solely determined by the indexing. But linked lists are quite democratic, in that they allow elements to arrange themselves. There are two flavors of these lists: singly and doubly. Each element of a singly linked list has an attribute "next" that points to another element. The linked list itself has an attribute called "nil" which marks the beginning and the end of our list(or the list itself if it's empty). Illustration does better work than words:</p>
+    <img class="img-fluid" src="assets/img/arraysLinkedLists/shoesLinkedList.png" style="width: 722px;"/>
+<hr/>
+    <p>A doubly linked list is an extension of the singly version. Its elements have an extra pointer "prev", which returns the previous element.</p>
+<img class="img-fluid" src="assets/img/arraysLinkedLists/shoesDoublyLinkedList.png" style="width: 722px;"/>
+<hr/>
+    <p>Now that we have basic understanding of linked lists, let's optimize our solution of the favourite shoes insertion at the head of the collection problem. If our collection was a singly linked list, we simply update the attribute "next" of the brand new shoes to point at whatever "nil" was pointing at, then we replace the "next" attrivute of "nil" with the new pair of shoes itself. And that's all it takes! Two steps instead of n+1 steps to shift an entire array of n elements.</p>
+    <img class="img-fluid" src="assets/img/arraysLinkedLists/shoesLinkedListAfterInsertion.png" style="width: 722px;" />
+<hr/>
+    <p>Try solving the same problem with doubly linked list instead! One of the disadvantages of linked lists, however, is that they don't provide random access of elements. To get hold of Pair 4 in the original linked List L we write: L.nil.next.next.next.next. See how the access is linear? Where we needed only 1 step: A[i+1] to access i-th element of an array, we now need i computational steps.</p>
+<hr/>
+    <h2 class="section-heading">Conclusion</h2>
+    <p>Arrays can be pretty useful if we wanted to store static data, that we needed to check out on a regular basis but not modify. Linked Lists also come in handy when checking-in information that require regular updating is what's needed. But what structure can we rely on to maintain an efficient data base, where data is updated and checked in and out too often? By the end of this series we'll be able to answer that question.</p>
+    <p>It's also worth mentioning that arrays can be multidimensional. This type is often called a matrix. A 2-dimensional n by n array is a table with n rows and n columns. To access the element in i<sup>th</sup> row and j<sup>th</sup> column, simply invoke A[i][j]. We can extend this to even more dimensions. A[0][0][0][0][0] to access first element in a 5-dimensional matrix. Now, you have a good understanding of arrays, linked lists and know how to access a 5-dimensional matrix. Tell your friends! <i class="fas fa-smile-wink"></i>.</p>
+    </div></div>
+        </div>
+    </article>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a href="https://www.instagram.com/idris_babay/" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-instagram fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/idris-babay-496a071a3/" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin-square fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.facebook.com/IdrisBabayV" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://www.xing.com/profile/Idris_Babay/cv" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-xing fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/IdrisB23" target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                    <p class="text-muted copyright">Copyright&nbsp;©&nbsp;IDRB 2020</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/clean-blog.js"></script>
+</body>
+
+</html>

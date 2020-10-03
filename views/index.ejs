@@ -1,0 +1,90 @@
+<%# Header %>
+<%- include("partials/header.ejs", {docTitle: "Home - IDRB"}) %>
+<header class="masthead" style="background-image:url('assets/img/Base/code.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="site-heading">
+                    <h1>Thougths Pool</h1>
+                    <span class="subheading" style="font-size: 2rem; background-color:  midnightblue;">There had been
+                        thinkers and sages
+                        throughout history<br>None of them had our advantages</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<%- include("partials/paginationBlock.ejs", {results, size, limit, page, rightmostPage, leftmostPage}) %>
+<%# Footer %>
+<%- include ("partials/footer.ejs") %>
+<script>
+    foo();
+    function foo() {
+        let xmlHttp = new XMLHttpRequest();
+        let paginationBlock = document.getElementById("pagination-block");
+        let btnColl = document.getElementsByClassName("page");
+        Array.from(btnColl).forEach((btn) => {
+            if (!btn.classList.contains("active")) {
+                btn.onclick = sendPaginationAJAX;
+            }
+        });
+
+        function sendPaginationAJAX() {
+            console.log("this binding in sendPagAJAX is", this);
+            const value = this.value;
+            xmlHttp.open("GET", `/pagination?page=${this.value}&limit=<%= limit %>`, true);
+            xmlHttp.send();
+            xmlHttp.onreadystatechange = loadPreviewsAJAX;
+        }
+
+        function loadPreviewsAJAX() {
+            if (this.readyState == 4 && this.status == 200) {
+                let response = JSON.parse(this.responseText);
+                let postsArray = response.results;
+                let postPreviews = "";
+                let paginationNav = '<div class="pagination-wrapper">';
+                postsArray.forEach((post) => {
+                    let previewPostDay = post.postDate.day == 1 ? "1<sup>st</sup>" : post.postDate.day == 2 ?
+                        "2<sup>nd</sup>" : post.postDate.day == 3 ? "3<sup>rd</sup>" : `${post.postDate.day}<sup>th</sup>`;
+                    postPreviews += `
+                        <div class="container"><a class="linkToPosts" href="posts${post.linkToPost}">
+                            <div class="row">
+                                <div class="col-12 col-lg-8">
+                                    <div class="post-preview">
+                                        <h2 class="post-title">${post.postTitle}</h2>
+                                        <h3 class="post-subtitle">${post.postSubTitle}</h3>
+                                        <p class="post-meta">Posted by <span>${post.authorName}</span> on <span>${post.postDate.month} ${previewPostDay}</span>
+                                        , ${post.postDate.year}</p>
+                                    </div>
+                                </div>
+                                <div class="col"><img src="${post.prevImgLink}" style="width: 100%;height: 100%;" />
+                                </div>
+                            </div>
+                        </a></div>
+                        <hr>
+                        `;
+                });
+                if (response.page != 1 || response.leftmostPage != 1) {
+                    paginationNav += '<button value=1 id="pageBtnFirst" class="page btn bnt-sm btn-light">First</button>';
+                }
+                for (var i = response.leftmostPage; i <= response.rightmostPage; i++) {
+                    if (i == response.page) {
+                        paginationNav += `<button value=${i} class="page btn bnt-sm btn-light active">${i}</button>`
+                    } else {
+                        paginationNav += `<button value=${i} class="page btn bnt-sm btn-light">${i}</button>`
+                    }
+                }
+                if (response.page != Math.ceil(response.size / response.limit) || response.rightmostPage != Math.ceil(response.size / response.limit)) {
+                    paginationNav += `<button value=${Math.ceil(response.size / response.limit)} id="pageBtnLast" class="page btn bnt-sm btn-light">Last</button>`;
+                }
+                paginationBlock.innerHTML = postPreviews + paginationNav + "</div>";
+                foo();
+            }
+        };
+    }
+
+</script>
+</body>
+
+</html>
